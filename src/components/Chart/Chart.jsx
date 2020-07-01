@@ -7,6 +7,19 @@ const generateRandomColor = () => {
   return randomColor;
 };
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active) {
+    return (
+      <div className="chart-tooltip">
+        <div className="title">{payload[0].name}</div>
+        <span>{payload[0].value + " occurrences"}</span>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const Chart = ({ result }) => {
   return (
     <PieChart width={400} height={400}>
@@ -23,7 +36,7 @@ const Chart = ({ result }) => {
           </Cell>
         ))}
       </Pie>
-      <Tooltip />
+      <Tooltip content={<CustomTooltip />} />
     </PieChart>
   );
 };
