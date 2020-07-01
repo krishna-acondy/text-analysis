@@ -20,15 +20,17 @@ const ResultTable = ({ result }) => {
             <Table.HeaderCell>Percentage</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-        {result.map((part, index) => {
-          return (
-            <Table.Row key={index}>
-              <Table.Cell>{part.word}</Table.Cell>
-              <Table.Cell>{part.frequency}</Table.Cell>
-              <Table.Cell>{part.percentage.toFixed(2)}%</Table.Cell>
-            </Table.Row>
-          );
-        })}
+        <Table.Body>
+          {result.map((part, index) => {
+            return (
+              <Table.Row key={index}>
+                <Table.Cell>{part.word}</Table.Cell>
+                <Table.Cell>{part.frequency}</Table.Cell>
+                <Table.Cell>{part.percentage.toFixed(2)}%</Table.Cell>
+              </Table.Row>
+            );
+          })}
+        </Table.Body>
       </Table>
     </>
   ) : (

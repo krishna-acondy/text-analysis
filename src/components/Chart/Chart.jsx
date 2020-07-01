@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
+import "./Chart.scss";
 
 const generateRandomColor = () => {
   var randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);

@@ -3,7 +3,7 @@ import "./App.scss";
 import { countWordFrequencies, ignoredWords } from "./utils/TextUtils";
 import { TextArea, Header, Form, Button, Label } from "semantic-ui-react";
 import WordList from "./components/WordList/WordList";
-import Chart from "./components/PieChart/PieChart";
+import Chart from "./components/Chart/Chart";
 import ResultTable from "./components/ResultTable/ResultTable";
 
 const App = () => {
@@ -58,8 +58,8 @@ const App = () => {
       {!!result && Object.keys(result).length && (
         <div className="result">
           <Chart result={result.words} />
-          <Header as="h3">
-            <Label>Total words: {result.totalWordCount}</Label>
+          <Header as="h1">
+            <Label color="teal">Total words: {result.totalWordCount}</Label>
           </Header>
           <ResultTable result={result.words} />
         </div>
