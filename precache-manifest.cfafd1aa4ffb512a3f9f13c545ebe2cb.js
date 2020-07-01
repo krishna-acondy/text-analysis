@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "72e2a0d9b67ca26a52928003e05fb8b8",
+    "revision": "12cf2c2e3ac26fa079483f6c1002c984",
     "url": "/text-analysis/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/text-analysis/static/css/2.82768613.chunk.css"
   },
   {
-    "revision": "8d5964fa1a74c47bad33",
-    "url": "/text-analysis/static/css/main.5f91fad3.chunk.css"
+    "revision": "d73c545c26dd11cefe4a",
+    "url": "/text-analysis/static/css/main.0d8c3292.chunk.css"
   },
   {
     "revision": "b6aec6376f2481c6e21b",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/text-analysis/static/js/2.8e998951.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8d5964fa1a74c47bad33",
-    "url": "/text-analysis/static/js/main.bd9ce7c4.chunk.js"
+    "revision": "d73c545c26dd11cefe4a",
+    "url": "/text-analysis/static/js/main.f3b00bd0.chunk.js"
   },
   {
     "revision": "8c5fa841c4716d295d7a",
