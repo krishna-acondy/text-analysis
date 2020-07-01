@@ -1,0 +1,38 @@
+.app {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  max-height: 100vh;
+
+  &.split-screen {
+    .result,
+    .control-panel {
+      width: 50%;
+      transition: 0.5s ease-in-out;
+    }
+  }
+
+  .result {
+    padding: 2.5%;
+    overflow: auto;
+  }
+
+  .control-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5%;
+  }
+
+  .text-input {
+    min-height: 30vh;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
