@@ -22,8 +22,8 @@ export const ignoredWords = [
 
 export const countWordFrequencies = (
   text,
-  wordsToCount = [],
-  stopWords = ignoredWords
+  phrasesToCount = [],
+  stopPhrases = ignoredWords
 ) => {
   let words = text
     .toLowerCase()
@@ -31,28 +31,29 @@ export const countWordFrequencies = (
     .replace(/[,;.()'"]/g, "")
     .replace(/[0-9]/g, "")
     .split(/[\s/]+/g)
-    .filter((w) => !stopWords.includes(w))
+    .filter((w) => !stopPhrases.includes(w))
     .sort();
 
   const totalWordCount = words.length;
+  const phraseFrequencies = {};
 
-  if (wordsToCount.length) {
-    words = words.filter((w) => wordsToCount.includes(w));
-  }
-
-  const wordFrequencies = {};
-
-  words.forEach((word) => {
-    wordFrequencies[word] = wordFrequencies[word] || 0;
-    wordFrequencies[word]++;
+  phrasesToCount.forEach((phrase) => {
+    if (
+      !Object.keys(phraseFrequencies).includes(phrase) &&
+      !stopPhrases.includes(phrase)
+    ) {
+      const regexp = new RegExp(phrase, "gi");
+      const count = (text.match(regexp) || []).length;
+      phraseFrequencies[phrase] = count;
+    }
   });
 
   const wordFrequenciesArray = [];
-  Object.keys(wordFrequencies).forEach((word) => {
+  Object.keys(phraseFrequencies).forEach((phrase) => {
     wordFrequenciesArray.push({
-      word,
-      frequency: wordFrequencies[word],
-      percentage: (wordFrequencies[word] / totalWordCount) * 100,
+      phrase,
+      frequency: phraseFrequencies[phrase],
+      percentage: (phraseFrequencies[phrase] / totalWordCount) * 100,
     });
   });
 

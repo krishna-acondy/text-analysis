@@ -31,13 +31,13 @@ const App = () => {
               setResult(result);
             }}
           >
-            Count word frequencies
+            Count frequencies
           </Button>
         </Form>
         <WordList
           words={words}
           color="green"
-          title="Words to count"
+          title="Words/Phrases to count"
           onWordAdd={(word) => setWords([...words, word.toLocaleLowerCase()])}
           onWordDelete={(word) => {
             setWords(words.filter((w) => w !== word));
@@ -46,7 +46,7 @@ const App = () => {
         <WordList
           words={stopWords}
           color="orange"
-          title="Ignored Words"
+          title="Ignored Words/Phrases"
           onWordAdd={(word) =>
             setStopWords([...stopWords, word.toLocaleLowerCase()])
           }

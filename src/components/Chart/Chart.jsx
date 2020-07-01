@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import "./Chart.scss";
 
 const generateRandomColor = () => {
@@ -10,13 +10,20 @@ const generateRandomColor = () => {
 const Chart = ({ result }) => {
   return (
     <PieChart width={400} height={400}>
-      <Pie dataKey="frequency" data={result} label>
+      <Pie
+        isAnimationActive={true}
+        dataKey="frequency"
+        data={result}
+        label
+        nameKey="phrase"
+      >
         {result.map((entry, index) => (
           <Cell key={index} fill={generateRandomColor()}>
-            {entry.word}
+            {entry.phrase}
           </Cell>
         ))}
       </Pie>
+      <Tooltip />
     </PieChart>
   );
 };
