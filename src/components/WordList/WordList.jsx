@@ -30,7 +30,7 @@ const WordList = ({ words, title, onWordAdd, onWordDelete, color }) => {
             return (
               <Label key={index} color={color}>
                 {word}
-                <Icon name="delete" />
+                <Icon name="delete" onClick={() => onWordDelete(word)} />
               </Label>
             );
           })}

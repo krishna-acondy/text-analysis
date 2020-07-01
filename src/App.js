@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./App.scss";
 import { countWordFrequencies, ignoredWords } from "./utils/TextUtils";
-import { TextArea, Header, Form, Button, Table } from "semantic-ui-react";
+import { TextArea, Header, Form, Button, Label } from "semantic-ui-react";
 import WordList from "./components/WordList/WordList";
 import Chart from "./components/PieChart/PieChart";
+import ResultTable from "./components/ResultTable/ResultTable";
 
 const App = () => {
   const [stopWords, setStopWords] = useState(ignoredWords || []);
@@ -37,38 +38,40 @@ const App = () => {
           words={words}
           color="green"
           title="Words to count"
-          onWordAdd={(word) =>
-            setWords((value) => [...value, word.toLocaleLowerCase()])
-          }
+          onWordAdd={(word) => setWords([...words, word.toLocaleLowerCase()])}
+          onWordDelete={(word) => {
+            setWords(words.filter((w) => w !== word));
+          }}
         />
         <WordList
           words={stopWords}
           color="orange"
           title="Ignored Words"
           onWordAdd={(word) =>
-            setStopWords((value) => [...value, word.toLocaleLowerCase()])
+            setStopWords([...stopWords, word.toLocaleLowerCase()])
           }
+          onWordDelete={(word) => {
+            setStopWords(stopWords.filter((w) => w !== word));
+          }}
         />
       </div>
-      {!!result && (
+      {!!result && Object.keys(result).length && (
         <div className="result">
-          <Chart result={result} />
-          <Table>
-            <Table.Header>
-              <Table.HeaderCell>Word</Table.HeaderCell>
-              <Table.HeaderCell>Count</Table.HeaderCell>
-            </Table.Header>
-            {result.map((part, index) => {
-              return (
-                <Table.Row key={index}>
-                  <Table.Cell>{part.word}</Table.Cell>
-                  <Table.Cell>{part.frequency}</Table.Cell>
-                </Table.Row>
-              );
-            })}
-          </Table>
+          <Chart result={result.words} />
+          <Header as="h3">
+            <Label>Total words: {result.totalWordCount}</Label>
+          </Header>
+          <ResultTable result={result.words} />
         </div>
       )}
+      {!result ||
+        (!!!Object.keys(result).length && (
+          <div>
+            None of the specified words were found in the text.
+            <br />
+            Please try again with a different set of words.
+          </div>
+        ))}
     </div>
   );
 };

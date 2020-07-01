@@ -34,6 +34,8 @@ export const countWordFrequencies = (
     .filter((w) => !stopWords.includes(w))
     .sort();
 
+  const totalWordCount = words.length;
+
   if (wordsToCount.length) {
     words = words.filter((w) => wordsToCount.includes(w));
   }
@@ -47,8 +49,15 @@ export const countWordFrequencies = (
 
   const wordFrequenciesArray = [];
   Object.keys(wordFrequencies).forEach((word) => {
-    wordFrequenciesArray.push({ word, frequency: wordFrequencies[word] });
+    wordFrequenciesArray.push({
+      word,
+      frequency: wordFrequencies[word],
+      percentage: (wordFrequencies[word] / totalWordCount) * 100,
+    });
   });
 
-  return wordFrequenciesArray.sort((a, b) => b.frequency - a.frequency);
+  return {
+    totalWordCount,
+    words: wordFrequenciesArray.sort((a, b) => b.frequency - a.frequency),
+  };
 };
